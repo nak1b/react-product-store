@@ -19677,6 +19677,16 @@ var NavItem = require('./navitem.jsx');
 var NavBar = React.createClass({
 	displayName: 'NavBar',
 
+	createNavItems: function () {
+		var items = this.props.navItems.map(function (item, index) {
+			return React.createElement(NavItem, {
+				key: item.title + index,
+				href: item.href,
+				title: item.title });
+		});
+
+		return items;
+	},
 	render: function () {
 		return React.createElement(
 			'div',
@@ -19711,7 +19721,7 @@ var NavBar = React.createClass({
 					React.createElement(
 						'ul',
 						{ className: 'nav navbar-nav' },
-						React.createElement(NavItem, null)
+						this.createNavItems()
 					)
 				)
 			)
@@ -19729,9 +19739,13 @@ var NavItem = React.createClass({
 
 	render: function () {
 		return React.createElement(
-			'div',
+			'li',
 			null,
-			'Test'
+			React.createElement(
+				'a',
+				{ href: this.props.href },
+				this.props.title
+			)
 		);
 	}
 });
@@ -19741,9 +19755,10 @@ module.exports = NavItem;
 },{"react":166}],170:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-
 var NavBar = require('./components/nav/navbar.jsx');
 
-ReactDOM.render(React.createElement(NavBar, null), document.getElementById('main'));
+var navLinks = [{ title: "Home", href: "#" }, { title: "About", href: "#" }, { title: "Blog", href: "#" }, { title: "Contact", href: "#" }];
+
+ReactDOM.render(React.createElement(NavBar, { navItems: navLinks }), document.getElementById('main'));
 
 },{"./components/nav/navbar.jsx":168,"react":166,"react-dom":1}]},{},[170]);

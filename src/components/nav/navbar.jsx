@@ -2,6 +2,16 @@ var React = require('react');
 var NavItem = require('./navitem.jsx');
 
 var NavBar = React.createClass({
+	createNavItems: function(){
+		var items = this.props.navItems.map(function(item, index){
+			return <NavItem 
+						key={item.title + index}
+						href={item.href} 
+						title={item.title} />
+		});
+
+		return items;
+	},
 	render: function(){
 		return <div>
 			<nav className="navbar navbar-default">
@@ -17,7 +27,7 @@ var NavBar = React.createClass({
 
 				<div className="collapse navbar-collapse" id="nav-collapse">
 					<ul className="nav navbar-nav">
-						{ <NavItem /> }
+						{ this.createNavItems() }
 					</ul>
 				</div>
 			</nav>

@@ -2,7 +2,9 @@ var React = require('react');
 
 var NavItem = React.createClass({
 	render: function(){
-		return <div>Test</div>;
+		return  <li>
+			<a href={this.props.href}>{this.props.title}</a>
+		</li>
 	}
 });
 
