@@ -19672,8 +19672,78 @@ process.umask = function() { return 0; };
 
 },{}],168:[function(require,module,exports){
 var React = require('react');
+var NavItem = require('./navitem.jsx');
+
+var NavBar = React.createClass({
+	displayName: 'NavBar',
+
+	render: function () {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'nav',
+				{ className: 'navbar navbar-default' },
+				React.createElement(
+					'div',
+					{ className: 'nabar-header' },
+					React.createElement(
+						'button',
+						{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#nav-collapse' },
+						React.createElement(
+							'span',
+							{ className: 'sr-only' },
+							'Toggle navigation'
+						),
+						React.createElement('span', { className: 'icon-bar' }),
+						React.createElement('span', { className: 'icon-bar' }),
+						React.createElement('span', { className: 'icon-bar' })
+					),
+					React.createElement(
+						'a',
+						{ className: 'navbar-brand', href: '#' },
+						'Product Shop'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'collapse navbar-collapse', id: 'nav-collapse' },
+					React.createElement(
+						'ul',
+						{ className: 'nav navbar-nav' },
+						React.createElement(NavItem, null)
+					)
+				)
+			)
+		);
+	}
+});
+
+module.exports = NavBar;
+
+},{"./navitem.jsx":169,"react":166}],169:[function(require,module,exports){
+var React = require('react');
+
+var NavItem = React.createClass({
+	displayName: 'NavItem',
+
+	render: function () {
+		return React.createElement(
+			'div',
+			null,
+			'Test'
+		);
+	}
+});
+
+module.exports = NavItem;
+
+},{"react":166}],170:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 
-//ReactDOM.render(, document.getElementById('main'));
+var NavBar = require('./components/nav/navbar.jsx');
 
-},{"react":166,"react-dom":1}]},{},[168]);
+ReactDOM.render(React.createElement(NavBar, null), document.getElementById('main'));
+
+},{"./components/nav/navbar.jsx":168,"react":166,"react-dom":1}]},{},[170]);
