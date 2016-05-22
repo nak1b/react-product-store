@@ -9,4 +9,8 @@ var navLinks = [
 	{ title: "Contact", href: "#"},
 ];
 
-ReactDOM.render(<NavBar navItems={navLinks} />, document.getElementById('main'));
+ReactDOM.render(<NavBar bgColor={"#FFFFFF"} 
+						navItems={navLinks} 
+						titleColor={"#d9534f"} 
+						linkColor={"red"} />
+				, document.getElementById('main'));

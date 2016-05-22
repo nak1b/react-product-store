@@ -19688,12 +19688,29 @@ var NavBar = React.createClass({
 		return items;
 	},
 	render: function () {
+
+		var styles = {
+			boxShado: "0 0 4px rgba(0, 0, 0, 0.4)",
+			borderRadius: 0
+		};
+
+		var titleStyle = {};
+		var linkStyle = {};
+
+		if (this.props.bgColor) {
+			styles.background = this.props.bgColor;
+		}
+
+		if (this.props.titleColor) {
+			titleStyle.color = this.props.titleColor;
+		}
+
 		return React.createElement(
 			'div',
 			null,
 			React.createElement(
 				'nav',
-				{ className: 'navbar navbar-default' },
+				{ style: styles, className: 'navbar navbar-default' },
 				React.createElement(
 					'div',
 					{ className: 'nabar-header' },
@@ -19711,7 +19728,7 @@ var NavBar = React.createClass({
 					),
 					React.createElement(
 						'a',
-						{ className: 'navbar-brand', href: '#' },
+						{ style: titleStyle, className: 'navbar-brand', href: '#' },
 						'Product Shop'
 					)
 				),
@@ -19759,6 +19776,9 @@ var NavBar = require('./components/nav/navbar.jsx');
 
 var navLinks = [{ title: "Home", href: "#" }, { title: "About", href: "#" }, { title: "Blog", href: "#" }, { title: "Contact", href: "#" }];
 
-ReactDOM.render(React.createElement(NavBar, { navItems: navLinks }), document.getElementById('main'));
+ReactDOM.render(React.createElement(NavBar, { bgColor: "#FFFFFF",
+	navItems: navLinks,
+	titleColor: "#d9534f",
+	linkColor: "red" }), document.getElementById('main'));
 
 },{"./components/nav/navbar.jsx":168,"react":166,"react-dom":1}]},{},[170]);

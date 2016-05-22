@@ -13,8 +13,25 @@ var NavBar = React.createClass({
 		return items;
 	},
 	render: function(){
+			
+		var styles = {
+			boxShado: "0 0 4px rgba(0, 0, 0, 0.4)",
+			borderRadius: 0
+		}
+
+		var titleStyle = {};
+		var linkStyle = {};
+
+		if(this.props.bgColor){
+			styles.background = this.props.bgColor;
+		}
+
+		if(this.props.titleColor){
+			titleStyle.color = this.props.titleColor;
+		}
+
 		return <div>
-			<nav className="navbar navbar-default">
+			<nav style={styles} className="navbar navbar-default">
 				<div className="nabar-header">
 					<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
 					  <span className="sr-only">Toggle navigation</span>
@@ -22,7 +39,7 @@ var NavBar = React.createClass({
 			          <span className="icon-bar"></span>
 			          <span className="icon-bar"></span>
 			       </button>
-			       <a className="navbar-brand" href="#">Product Shop</a>
+			       <a style={titleStyle} className="navbar-brand" href="#">Product Shop</a>
 				</div>
 
 				<div className="collapse navbar-collapse" id="nav-collapse">
