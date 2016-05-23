@@ -1,8 +1,13 @@
 var React = require('react');
 var EmailField = require('./EmailField.jsx');
 var NameField = require('./NameField.jsx');
+var Reflux = require('reflux');
+var EmailStore = require('../../reflux/EmailStore.jsx');
+var Actions = require('../../reflux/Actions.jsx');
 
 var LeadCapture = React.createClass({
+    mixins: [Reflux.listenTo(EmailStore, 'onChange')],
+
     getInitialState: function(){
         return {
             submitted: false
@@ -13,7 +18,7 @@ var LeadCapture = React.createClass({
             alert("You suck at filling out forms. Email is always required in a lead capture form. Dummy!");
         } else {
             //Send request to email host or server!
-            var httpRequestBody = {
+            var subscriber = {
                 email: this.refs.fieldEmail.state.value,
                 firstName: this.refs.fieldName.state.value
             };
@@ -21,8 +26,11 @@ var LeadCapture = React.createClass({
             this.refs.fieldEmail.clear();
             this.refs.fieldName.clear();
 
-            this.setState({submitted:true});
+            Actions.submitEmail(subscriber);
         }
+    },
+    onChange: function(subscribers){
+        this.setState({submitted:true});
     },
     render: function() {
         var successStyle = {
@@ -34,7 +42,7 @@ var LeadCapture = React.createClass({
             <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                        <h3>Get Daily Deails</h3>
+                        <h3>Get Daily Deals</h3>
                     </div>
                     <div className="panel-body">
                         <NameField ref="fieldName"/>
