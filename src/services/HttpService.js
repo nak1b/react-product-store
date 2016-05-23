@@ -1,4 +1,4 @@
-var fetch = require('whatwg-fetch');
+var Fetch = require('whatwg-fetch');
 var baseUrl = 'http://localhost:8080';
 
 var service = {
@@ -10,16 +10,12 @@ var service = {
 	},
 	post: function(url, body){
 		return fetch(baseUrl+ url, {
-			headers: {
-				'Accept': 'text/plain',
-				'Content-Type': 'application/json'
-			},
-			method: 'post',
+			method: 'POST',
 			body: JSON.stringify(body)
 		}).then(function(response){
 			return response;
 		});
 	}
-}
+};
 
 module.exports = service;

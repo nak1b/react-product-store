@@ -27198,7 +27198,7 @@ var Actions = require('./Actions.jsx');
 var EmailStore = Reflux.createStore({
 	listenables: [Actions],
 
-	submitEmail: function () {
+	submitEmail: function (subscriber) {
 		HTTP.post('/subscribers', subscriber).then(function (response) {
 			var msg = "";
 
@@ -27241,7 +27241,7 @@ var Routes = React.createElement(
 module.exports = Routes;
 
 },{"./components/BasePage.jsx":250,"./components/HomePage.jsx":251,"./components/ProductPage.jsx":252,"react":228,"react-router":32}],262:[function(require,module,exports){
-var fetch = require('whatwg-fetch');
+var Fetch = require('whatwg-fetch');
 var baseUrl = 'http://localhost:8080';
 
 var service = {
@@ -27252,11 +27252,7 @@ var service = {
 	},
 	post: function (url, body) {
 		return fetch(baseUrl + url, {
-			headers: {
-				'Accept': 'text/plain',
-				'Content-Type': 'application/json'
-			},
-			method: 'post',
+			method: 'POST',
 			body: JSON.stringify(body)
 		}).then(function (response) {
 			return response;

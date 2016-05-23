@@ -5,7 +5,7 @@ var Actions = require('./Actions.jsx');
 var EmailStore = Reflux.createStore({
 	listenables: [Actions],
 	
-	submitEmail: function(){
+	submitEmail: function(subscriber){
 		HTTP.post('/subscribers', subscriber)
 			.then(function(response){
 				var msg = "";
