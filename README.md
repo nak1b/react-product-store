@@ -15,7 +15,7 @@ opne the repo, install dependencies, then start the node application:
 ```
 	 
 #### 2. Server
-Install nodemon globally
+Install nodemon globally. It monitors for any changes in your node.js application and automatically restart the server 
 
 ``` npm install -g nodemon ```
 
