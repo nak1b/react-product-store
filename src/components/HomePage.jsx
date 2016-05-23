@@ -7,9 +7,9 @@ var HomePage = React.createClass({
 		return (
 			<div>
 				<ul>
-					<li><Link to="/product/54">Iphone 6</Link></li>
-					<li><Link to="/product/12">Samsung S6</Link></li>
-					<li><Link to="/product/1">LG G4</Link></li>
+					<li><Link to="/product/54">Iphone</Link></li>
+					<li><Link to="/product/12">Samsung</Link></li>
+					<li><Link to="/product/1">LG</Link></li>
 				</ul>
 			</div>
 		)

@@ -24973,7 +24973,7 @@ process.umask = function() { return 0; };
 var React = require('react');
 var NavBar = require('./nav/navbar.jsx');
 
-var navLinks = [{ title: "Home", href: "/" }];
+var navLinks = [{ title: "Home", href: "/" }, { title: "Iphone", href: "/product/54" }, { title: "Samsung", href: "/product/12" }, { title: "Home", href: "/product/1" }];
 
 var BasePage = React.createClass({
 	displayName: 'BasePage',
@@ -25014,7 +25014,7 @@ var HomePage = React.createClass({
 					React.createElement(
 						Link,
 						{ to: '/product/54' },
-						'Iphone 6'
+						'Iphone'
 					)
 				),
 				React.createElement(
@@ -25023,7 +25023,7 @@ var HomePage = React.createClass({
 					React.createElement(
 						Link,
 						{ to: '/product/12' },
-						'Samsung S6'
+						'Samsung'
 					)
 				),
 				React.createElement(
@@ -25032,7 +25032,7 @@ var HomePage = React.createClass({
 					React.createElement(
 						Link,
 						{ to: '/product/1' },
-						'LG G4'
+						'LG'
 					)
 				)
 			)
@@ -25046,14 +25046,25 @@ module.exports = HomePage;
 var React = require('react');
 
 var ProductPage = React.createClass({
-	displayName: 'ProductPage',
+	displayName: "ProductPage",
 
+	getInitialState: function () {
+		return {
+			pid: ""
+		};
+	},
+	componentDidMount: function () {
+		this.setState({ pid: this.props.params.productId });
+	},
+	componentWillReceiveProps: function (nextProp) {
+		this.setState({ pid: nextProp.params.productId });
+	},
 	render: function () {
 		return React.createElement(
-			'div',
+			"div",
 			null,
-			'Product Page Id : ',
-			this.props.params.productId
+			"Product Page Id : ",
+			this.state.pid
 		);
 	}
 });
