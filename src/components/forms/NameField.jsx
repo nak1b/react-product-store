@@ -14,7 +14,7 @@ var NameField = React.createClass({
         return (
             <input
             className="form-control"
-            placeholder={this.props.type + " Name"}
+            placeholder="Name"
             onChange={this.onChange} value={this.state.value}/>
         );
     }

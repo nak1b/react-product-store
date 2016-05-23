@@ -1,3 +1,24 @@
 body{
 	background: #fafafa;
 }
+
+.panel-heading{
+	background: rgb(217, 83, 79) !important;
+}
+
+.panel-heading h3{
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 15px;
+	text-align: center;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-weight: 400;
+}
+
+.btn.submit{
+	background: #5cb85c;
+	border: none;
+	min-width: 110px;
+}

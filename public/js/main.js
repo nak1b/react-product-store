@@ -25166,6 +25166,11 @@ var NameField = require('./NameField.jsx');
 var LeadCapture = React.createClass({
     displayName: 'LeadCapture',
 
+    getInitialState: function () {
+        return {
+            submitted: false
+        };
+    },
     onSubmit: function (e) {
         if (!this.refs.fieldEmail.state.valid) {
             alert("You suck at filling out forms. Email is always required in a lead capture form. Dummy!");
@@ -25178,9 +25183,16 @@ var LeadCapture = React.createClass({
 
             this.refs.fieldEmail.clear();
             this.refs.fieldName.clear();
+
+            this.setState({ submitted: true });
         }
     },
     render: function () {
+        var successStyle = {
+            color: "#5CB85C",
+            visibility: this.state.submitted ? "visible" : "hidden"
+        };
+
         return React.createElement(
             'div',
             null,
@@ -25189,14 +25201,40 @@ var LeadCapture = React.createClass({
                 { className: 'panel panel-default' },
                 React.createElement(
                     'div',
+                    { className: 'panel-heading' },
+                    React.createElement(
+                        'h3',
+                        null,
+                        'Get Daily Deails'
+                    )
+                ),
+                React.createElement(
+                    'div',
                     { className: 'panel-body' },
-                    React.createElement(NameField, { type: 'First', ref: 'fieldName' }),
+                    React.createElement(NameField, { ref: 'fieldName' }),
                     React.createElement('br', null),
                     React.createElement(EmailField, { ref: 'fieldEmail' }),
                     React.createElement(
-                        'button',
-                        { className: 'btn btn-primary', onClick: this.onSubmit },
-                        'Submit'
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'div',
+                            { className: 'col-sm-6' },
+                            React.createElement(
+                                'button',
+                                { className: 'btn btn-primary submit', onClick: this.onSubmit },
+                                'Submit'
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col-sm-6' },
+                            React.createElement(
+                                'h5',
+                                { style: successStyle },
+                                'Success!'
+                            )
+                        )
                     )
                 )
             )
@@ -25224,7 +25262,7 @@ var NameField = React.createClass({
     render: function () {
         return React.createElement("input", {
             className: "form-control",
-            placeholder: this.props.type + " Name",
+            placeholder: "Name",
             onChange: this.onChange, value: this.state.value });
     }
 });
